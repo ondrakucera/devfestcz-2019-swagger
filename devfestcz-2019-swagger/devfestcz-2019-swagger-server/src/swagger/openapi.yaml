@@ -1,0 +1,73 @@
+openapi: 3.0.0
+info:
+    title: Students
+    description: >-
+        Popis
+
+        Druhý odstavec popisu.
+
+        Nějaký **tučný** text.
+    version: 1.0.0
+
+paths:
+
+    /students:
+        summary: Summary for the whole path.
+        description: Description for the whole path.
+        get:
+            summary: Summary for the operation.
+            description: >-
+                Description for the operation.
+
+                Second paragraph of the description.
+            operationId: getStudents
+            responses:
+                200:
+                    description: Description
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/Student"
+
+    /students/{studentId}:
+        summary: Summary
+        description: Description
+        get:
+            summary: Summary
+            description: Description
+            operationId: getStudent
+            parameters:
+                -
+                    name: studentId
+                    description: Description
+                    in: path
+                    required: true
+                    schema:
+                        type: integer
+            responses:
+                200:
+                    description: Description
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Student"
+                404:
+                    description: When the student cannot be found
+
+components:
+    schemas:
+        Student:
+            description: Student description
+            type: object
+            properties:
+                firstName:
+                    description: First name of the student
+                    type: string
+                year:
+                    description: Year the student currently is in
+                    type: integer
+                    format: int32
+                    minimum: 1
+                    maximum: 7
