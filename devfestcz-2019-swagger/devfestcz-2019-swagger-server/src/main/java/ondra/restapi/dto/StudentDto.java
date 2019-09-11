@@ -15,11 +15,36 @@ import javax.validation.constraints.*;
 @ApiModel(description = "Student description")
 @Validated
 public class StudentDto   {
+  @JsonProperty("id")
+  private Long id = null;
+
   @JsonProperty("firstName")
   private String firstName = null;
 
+  @JsonProperty("lastName")
+  private String lastName = null;
+
   @JsonProperty("year")
   private Integer year = null;
+
+  public StudentDto id(Long id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Id
+   * @return id
+  **/
+  @ApiModelProperty(value = "Id")
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 
   public StudentDto firstName(String firstName) {
     this.firstName = firstName;
@@ -38,6 +63,25 @@ public class StudentDto   {
 
   public void setFirstName(String firstName) {
     this.firstName = firstName;
+  }
+
+  public StudentDto lastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
+
+  /**
+   * Last name of the student
+   * @return lastName
+  **/
+  @ApiModelProperty(value = "Last name of the student")
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
   }
 
   public StudentDto year(Integer year) {
@@ -71,13 +115,15 @@ public class StudentDto   {
       return false;
     }
     StudentDto student = (StudentDto) o;
-    return Objects.equals(this.firstName, student.firstName) &&
+    return Objects.equals(this.id, student.id) &&
+        Objects.equals(this.firstName, student.firstName) &&
+        Objects.equals(this.lastName, student.lastName) &&
         Objects.equals(this.year, student.year);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstName, year);
+    return Objects.hash(id, firstName, lastName, year);
   }
 
   @Override
@@ -85,7 +131,9 @@ public class StudentDto   {
     StringBuilder sb = new StringBuilder();
     sb.append("class StudentDto {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
+    sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    year: ").append(toIndentedString(year)).append("\n");
     sb.append("}");
     return sb.toString();
