@@ -93,6 +93,7 @@ components:
             required: true
             schema:
                 type: integer
+                format: int64
     requestBodies:
         student:
             content:
