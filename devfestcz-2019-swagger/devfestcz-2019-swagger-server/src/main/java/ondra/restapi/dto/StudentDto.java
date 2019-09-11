@@ -55,7 +55,8 @@ public class StudentDto   {
    * First name of the student
    * @return firstName
   **/
-  @ApiModelProperty(value = "First name of the student")
+  @ApiModelProperty(required = true, value = "First name of the student")
+  @NotNull
 
   public String getFirstName() {
     return firstName;
@@ -74,7 +75,8 @@ public class StudentDto   {
    * Last name of the student
    * @return lastName
   **/
-  @ApiModelProperty(value = "Last name of the student")
+  @ApiModelProperty(required = true, value = "Last name of the student")
+  @NotNull
 
   public String getLastName() {
     return lastName;
@@ -95,7 +97,8 @@ public class StudentDto   {
    * maximum: 7
    * @return year
   **/
-  @ApiModelProperty(value = "Year the student currently is in")
+  @ApiModelProperty(required = true, value = "Year the student currently is in")
+  @NotNull
 
 @Min(1) @Max(7)   public Integer getYear() {
     return year;
