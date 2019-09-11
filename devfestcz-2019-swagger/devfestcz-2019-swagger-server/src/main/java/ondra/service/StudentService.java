@@ -18,4 +18,6 @@ public interface StudentService {
 	@NotNull
 	Student saveStudent(@NotNull Student student);
 
+	void deleteStudent(long id);
+
 }
