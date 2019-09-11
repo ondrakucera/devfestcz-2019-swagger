@@ -1,6 +1,7 @@
 package ondra.controller;
 
 import ondra.converter.StudentConverter;
+import ondra.domain.Student;
 import ondra.domain.StudentNotFoundException;
 import ondra.restapi.controller.StudentsApi;
 import ondra.restapi.dto.StudentDto;
@@ -30,8 +31,28 @@ public class StudentController implements StudentsApi {
 	}
 
 	@Override
+	public ResponseEntity<Void> postStudent(StudentDto studentDto) {
+		studentService.saveStudent(studentConverter.fromDto(studentDto));
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+
+	@Override
 	public ResponseEntity<StudentDto> getStudent(Long studentId) {
 		return ResponseEntity.ok(studentConverter.toDto(studentService.getStudent(studentId)));
+	}
+
+	@Override
+	public ResponseEntity<Void> putStudent(Long studentId, StudentDto studentDto) {
+		Student student = studentConverter.fromDto(studentDto);
+		student.setId(studentId);
+		studentService.saveStudent(student);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
+	@Override
+	public ResponseEntity<Void> deleteStudent(Long studentId) {
+		studentService.deleteStudent(studentId);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@ResponseStatus(value= HttpStatus.NOT_FOUND)
