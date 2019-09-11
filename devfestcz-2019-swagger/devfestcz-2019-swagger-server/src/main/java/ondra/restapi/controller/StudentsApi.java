@@ -51,12 +51,12 @@ public interface StudentsApi {
         @ApiResponse(code = 204, message = "Description") })
     @RequestMapping(value = "/students/{studentId}",
         method = RequestMethod.DELETE)
-    default ResponseEntity<Void> _deleteStudent(@ApiParam(value = "Description",required=true) @PathVariable("studentId") Integer studentId) {
+    default ResponseEntity<Void> _deleteStudent(@ApiParam(value = "Description",required=true) @PathVariable("studentId") Long studentId) {
         return deleteStudent(studentId);
     }
 
     // Override this method
-    default ResponseEntity<Void> deleteStudent(Integer studentId) {
+    default ResponseEntity<Void> deleteStudent(Long studentId) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
         } else {
             log.warn("ObjectMapper or HttpServletRequest not configured in default StudentsApi interface so no example is generated");
@@ -72,12 +72,12 @@ public interface StudentsApi {
     @RequestMapping(value = "/students/{studentId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<StudentDto> _getStudent(@ApiParam(value = "Description",required=true) @PathVariable("studentId") Integer studentId) {
+    default ResponseEntity<StudentDto> _getStudent(@ApiParam(value = "Description",required=true) @PathVariable("studentId") Long studentId) {
         return getStudent(studentId);
     }
 
     // Override this method
-    default ResponseEntity<StudentDto> getStudent(Integer studentId) {
+    default ResponseEntity<StudentDto> getStudent(Long studentId) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
         } else {
             log.warn("ObjectMapper or HttpServletRequest not configured in default StudentsApi interface so no example is generated");
@@ -132,12 +132,12 @@ public interface StudentsApi {
     @RequestMapping(value = "/students/{studentId}",
         consumes = { "application/json" },
         method = RequestMethod.PUT)
-    default ResponseEntity<Void> _putStudent(@ApiParam(value = "Description",required=true) @PathVariable("studentId") Integer studentId,@ApiParam(value = ""  )  @Valid @RequestBody StudentDto body) {
+    default ResponseEntity<Void> _putStudent(@ApiParam(value = "Description",required=true) @PathVariable("studentId") Long studentId,@ApiParam(value = ""  )  @Valid @RequestBody StudentDto body) {
         return putStudent(studentId, body);
     }
 
     // Override this method
-    default ResponseEntity<Void> putStudent(Integer studentId,StudentDto body) {
+    default ResponseEntity<Void> putStudent(Long studentId,StudentDto body) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
         } else {
             log.warn("ObjectMapper or HttpServletRequest not configured in default StudentsApi interface so no example is generated");

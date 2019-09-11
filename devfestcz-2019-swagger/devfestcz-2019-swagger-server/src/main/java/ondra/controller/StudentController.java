@@ -30,7 +30,7 @@ public class StudentController implements StudentsApi {
 	}
 
 	@Override
-	public ResponseEntity<StudentDto> getStudent(Integer studentId) {
+	public ResponseEntity<StudentDto> getStudent(Long studentId) {
 		return ResponseEntity.ok(studentConverter.toDto(studentService.getStudent(studentId)));
 	}
 
