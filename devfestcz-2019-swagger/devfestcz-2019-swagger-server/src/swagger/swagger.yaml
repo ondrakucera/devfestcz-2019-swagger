@@ -1,0 +1,121 @@
+swagger: "2.0"
+info:
+    title: Students
+    description: >-
+        Popis
+
+        Druhý odstavec popisu.
+
+        Nějaký **tučný** text.
+    version: 1.0.0
+
+
+paths:
+    /students:
+        get:
+            summary: Summary for the operation.
+            description: >-
+                Description for the operation.
+
+                Second paragraph of the description.
+            operationId: getStudents
+            responses:
+                200:
+                    description: Description
+                    schema:
+                        type: array
+                        items:
+                            $ref: "#/definitions/Student"
+
+        post:
+            summary: Summary
+            description: Description
+            operationId: postStudent
+            parameters:
+                - $ref: "#/parameters/student"
+            responses:
+                200:
+                    description: Description
+                    schema:
+                        type: integer
+                        format: int64
+
+    /students/{studentId}:
+        get:
+            summary: Summary
+            description: Description
+            operationId: getStudent
+            parameters:
+                - $ref: "#/parameters/studentId"
+            responses:
+                200:
+                    description: Description
+                    schema:
+                        $ref: "#/definitions/Student"
+                404:
+                    description: When the student cannot be found
+
+        put:
+            summary: Summary
+            description: Description
+            operationId: putStudent
+            parameters:
+                - $ref: "#/parameters/studentId"
+                - $ref: "#/parameters/student"
+            responses:
+                204:
+                    description: Description
+
+        delete:
+            summary: Summary
+            description: Description
+            operationId: deleteStudent
+            parameters:
+                - $ref: "#/parameters/studentId"
+            responses:
+                204:
+                    description: Description
+
+
+parameters:
+    studentId:
+        name: studentId
+        description: Description
+        in: path
+        required: true
+        type: integer
+        format: int64
+    student:
+        name: student
+        description: Description
+        in: body
+        required: true
+        schema:
+            $ref: "#/definitions/Student"
+
+
+definitions:
+    Student:
+        description: Student description
+        type: object
+        properties:
+            id:
+                description: Id
+                type: integer
+                format: int64
+            firstName:
+                description: First name of the student
+                type: string
+            lastName:
+                description: Last name of the student
+                type: string
+            year:
+                description: Year the student currently is in
+                type: integer
+                format: int32
+                minimum: 1
+                maximum: 7
+        required:
+            - firstName
+            - lastName
+            - year
