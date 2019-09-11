@@ -14,6 +14,7 @@ paths:
     /students:
         summary: Summary for the whole path.
         description: Description for the whole path.
+
         get:
             summary: Summary for the operation.
             description: >-
@@ -31,21 +32,26 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Student"
 
+        post:
+            summary: Summary
+            description: Description
+            operationId: postStudent
+            requestBody:
+                $ref: "#/components/requestBodies/student"
+            responses:
+                201:
+                    description: Description
+
     /students/{studentId}:
         summary: Summary
         description: Description
+
         get:
             summary: Summary
             description: Description
             operationId: getStudent
             parameters:
-                -
-                    name: studentId
-                    description: Description
-                    in: path
-                    required: true
-                    schema:
-                        type: integer
+                - $ref: "#/components/parameters/studentId"
             responses:
                 200:
                     description: Description
@@ -56,7 +62,43 @@ paths:
                 404:
                     description: When the student cannot be found
 
+        put:
+            summary: Summary
+            description: Description
+            operationId: putStudent
+            parameters:
+                - $ref: "#/components/parameters/studentId"
+            requestBody:
+                $ref: "#/components/requestBodies/student"
+            responses:
+                204:
+                    description: Description
+
+        delete:
+            summary: Summary
+            description: Description
+            operationId: deleteStudent
+            parameters:
+                - $ref: "#/components/parameters/studentId"
+            responses:
+                204:
+                    description: Description
+
 components:
+    parameters:
+        studentId:
+            name: studentId
+            description: Description
+            in: path
+            required: true
+            schema:
+                type: integer
+    requestBodies:
+        student:
+            content:
+                application/json:
+                    schema:
+                        $ref: "#/components/schemas/Student"
     schemas:
         Student:
             description: Student description
@@ -78,3 +120,7 @@ components:
                     format: int32
                     minimum: 1
                     maximum: 7
+            required:
+                - firstName
+                - lastName
+                - year
