@@ -5,7 +5,6 @@ import ondra.domain.StudentNotFoundException;
 import ondra.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Service
@@ -25,6 +24,11 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public Student getStudent(long id) {
 		return studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
+	}
+
+	@Override
+	public Student saveStudent(Student student) {
+		return studentRepository.save(student);
 	}
 
 }

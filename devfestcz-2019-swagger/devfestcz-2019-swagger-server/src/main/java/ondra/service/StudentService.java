@@ -15,4 +15,7 @@ public interface StudentService {
 	@NotNull
 	Student getStudent(long id);
 
+	@NotNull
+	Student saveStudent(@NotNull Student student);
+
 }
