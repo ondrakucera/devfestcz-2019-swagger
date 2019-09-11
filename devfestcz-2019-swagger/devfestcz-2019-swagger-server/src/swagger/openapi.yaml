@@ -62,8 +62,15 @@ components:
             description: Student description
             type: object
             properties:
+                id:
+                    description: Id
+                    type: integer
+                    format: int64
                 firstName:
                     description: First name of the student
+                    type: string
+                lastName:
+                    description: Last name of the student
                     type: string
                 year:
                     description: Year the student currently is in
