@@ -39,8 +39,13 @@ paths:
             requestBody:
                 $ref: "#/components/requestBodies/student"
             responses:
-                201:
+                200:
                     description: Description
+                    content:
+                        application/json:
+                            schema:
+                                type: integer
+                                format: int64
 
     /students/{studentId}:
         summary: Summary
