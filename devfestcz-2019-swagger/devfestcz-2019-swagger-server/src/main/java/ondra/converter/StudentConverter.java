@@ -10,6 +10,14 @@ import java.util.stream.Collectors;
 @Component
 public class StudentConverter {
 
+	public Student fromDto(StudentDto studentDto) {
+		Student student = new Student();
+		student.setFirstName(studentDto.getFirstName());
+		student.setLastName(studentDto.getLastName());
+		student.setYear(studentDto.getYear());
+		return student;
+	}
+
 	public StudentDto toDto(Student student) {
 		return new StudentDto()
 				.id(student.getId())
