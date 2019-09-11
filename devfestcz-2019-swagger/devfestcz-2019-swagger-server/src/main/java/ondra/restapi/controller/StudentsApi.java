@@ -106,18 +106,19 @@ public interface StudentsApi {
     }
 
 
-    @ApiOperation(value = "Summary", nickname = "postStudent", notes = "Description", tags={  })
+    @ApiOperation(value = "Summary", nickname = "postStudent", notes = "Description", response = Long.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "Description") })
+        @ApiResponse(code = 200, message = "Description", response = Long.class) })
     @RequestMapping(value = "/students",
+        produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    default ResponseEntity<Void> _postStudent(@ApiParam(value = ""  )  @Valid @RequestBody StudentDto body) {
+    default ResponseEntity<Long> _postStudent(@ApiParam(value = ""  )  @Valid @RequestBody StudentDto body) {
         return postStudent(body);
     }
 
     // Override this method
-    default ResponseEntity<Void> postStudent(StudentDto body) {
+    default ResponseEntity<Long> postStudent(StudentDto body) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
         } else {
             log.warn("ObjectMapper or HttpServletRequest not configured in default StudentsApi interface so no example is generated");

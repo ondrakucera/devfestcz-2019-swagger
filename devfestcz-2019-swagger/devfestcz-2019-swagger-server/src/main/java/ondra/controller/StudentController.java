@@ -31,9 +31,9 @@ public class StudentController implements StudentsApi {
 	}
 
 	@Override
-	public ResponseEntity<Void> postStudent(StudentDto studentDto) {
-		studentService.saveStudent(studentConverter.fromDto(studentDto));
-		return new ResponseEntity<>(HttpStatus.CREATED);
+	public ResponseEntity<Long> postStudent(StudentDto studentDto) {
+		Student student = studentService.saveStudent(studentConverter.fromDto(studentDto));
+		return ResponseEntity.ok(student.getId());
 	}
 
 	@Override
