@@ -14,6 +14,7 @@ import javax.validation.constraints.*;
  */
 @ApiModel(description = "Student description")
 @Validated
+
 public class StudentDto   {
   @JsonProperty("id")
   private Long id = null;
@@ -38,6 +39,7 @@ public class StudentDto   {
   **/
   @ApiModelProperty(value = "Id")
 
+
   public Long getId() {
     return id;
   }
@@ -58,6 +60,7 @@ public class StudentDto   {
   @ApiModelProperty(required = true, value = "First name of the student")
   @NotNull
 
+
   public String getFirstName() {
     return firstName;
   }
@@ -77,6 +80,7 @@ public class StudentDto   {
   **/
   @ApiModelProperty(required = true, value = "Last name of the student")
   @NotNull
+
 
   public String getLastName() {
     return lastName;
@@ -100,7 +104,8 @@ public class StudentDto   {
   @ApiModelProperty(required = true, value = "Year the student currently is in")
   @NotNull
 
-@Min(1) @Max(7)   public Integer getYear() {
+@Min(1) @Max(7) 
+  public Integer getYear() {
     return year;
   }
 
@@ -153,3 +158,4 @@ public class StudentDto   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+
