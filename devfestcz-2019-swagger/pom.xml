@@ -19,10 +19,26 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<springfox-version>2.7.0</springfox-version>
 	</properties>
 
 	<modules>
 		<module>devfestcz-2019-swagger-server</module>
 	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${springfox-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${springfox-version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 </project>
