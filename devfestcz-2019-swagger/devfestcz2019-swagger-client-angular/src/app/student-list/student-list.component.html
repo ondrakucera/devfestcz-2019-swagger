@@ -1,1 +1,14 @@
-<p>student-list works!</p>
+<table border="1">
+  <thead>
+    <tr><th>Name</th><th>Year</th><th></th></tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students | async">
+      <td>{{student.firstName}} {{student.lastName}}</td>
+      <td>{{student.year}}</td>
+      <td>
+        <button (click)="deleteStudent(student.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

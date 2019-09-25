@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs';
+import {Student} from '../student';
+import {StudentService} from '../student.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-student-list',
@@ -7,9 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentListComponent implements OnInit {
 
-  constructor() { }
+  students: Observable<Student[]>;
+
+  constructor(private studentService: StudentService, private router: Router) { }
 
   ngOnInit() {
+    this.reloadData();
+  }
+
+  reloadData() {
+    this.students = this.studentService.getStudentList();
+  }
+
+  deleteStudent(id: number) {
+    this.studentService.deleteStudent(id)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.reloadData();
+        },
+        error => console.log(error));
   }
 
 }
