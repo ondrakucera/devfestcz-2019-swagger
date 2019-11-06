@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import studentsApiClient from "./studentsApiClient";
 
-const List = () => {
+const ListOld = () => {
 	const [students, setStudents] = useState([]);
 
 	useEffect(() => {
@@ -33,4 +33,4 @@ const List = () => {
 	);
 };
 
-export default List;
+export default ListOld;

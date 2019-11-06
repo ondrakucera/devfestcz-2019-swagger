@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
 import * as serviceWorker from './serviceWorker';
+// import ListOld from './ListOld';
 import List from './List';
 
 // ReactDOM.render(<App />, document.getElementById('root'));
+// ReactDOM.render(<List />, document.getElementById('root'));
 ReactDOM.render(<List />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
