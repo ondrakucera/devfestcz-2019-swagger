@@ -2,6 +2,7 @@ import * as React from 'react';
 import {useEffect, useState} from 'react';
 import {StudentDto} from './restapi2';
 import studentsApi from './studentsApi';
+import {Link} from 'react-router-dom';
 
 const List = () => {
 	const [students, setStudents] = useState([] as StudentDto[]);
@@ -11,29 +12,41 @@ const List = () => {
 	}, []);
 
 	return (
-		<table>
-			<thead><tr><th>Name</th><th>Year</th><th/></tr></thead>
-			<tbody>
-			{students.map((student) => (
-				<tr key={student.id}>
-					<td>{student.firstName} {student.lastName}</td>
-					<td>{student.year}</td>
-					<td>
-						<button onClick={(e) => {
-							if (student.id) {
-								studentsApi.deleteStudent(student.id)
-									.then(() => studentsApi.getStudents()
-										.then((students) => setStudents(students)));
-								e.preventDefault();
-							}
-						}}>
-							Delete
-						</button>
-					</td>
+		<>
+			<h1>Students</h1>
+			<table className="table table-striped table-bordered">
+				<thead>
+				<tr>
+					<th>Name</th>
+					<th>Year</th>
+					<th/>
 				</tr>
-			))}
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+				{students.map((student) => (
+					<tr key={student.id}>
+						<td><Link to={'/students/' + student.id}>{student.firstName} {student.lastName}</Link></td>
+						<td>{student.year}</td>
+						<td>
+							<button
+								onClick={(e) => {
+									e.preventDefault();
+									if (student.id) {
+										studentsApi.deleteStudent(student.id)
+											.then(() => studentsApi.getStudents()
+												.then((students) => setStudents(students)));
+									}
+								}}
+								className="btn btn-danger"
+							>
+								Delete
+							</button>
+						</td>
+					</tr>
+				))}
+				</tbody>
+			</table>
+		</>
 	);
 };
 
