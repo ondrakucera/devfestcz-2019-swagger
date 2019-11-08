@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>devfestcz-2019-swagger</artifactId>
+		<groupId>ondra</groupId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>devfestcz-2019-swagger-server-restapi</artifactId>
+	<packaging>jar</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>io.swagger</groupId>
+					<artifactId>swagger-codegen-maven-plugin</artifactId>
+					<version>2.3.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+
+			<plugin>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-codegen-maven-plugin</artifactId>
+				<configuration>
+					<language>spring</language>
+					<apiPackage>ondra.restapi.controller</apiPackage>
+					<modelPackage>ondra.restapi.dto</modelPackage>
+					<modelNameSuffix>Dto</modelNameSuffix>
+					<configOptions>
+						<delegatePattern>true</delegatePattern>
+						<hideGenerationTimestamp>true</hideGenerationTimestamp>
+						<interfaceOnly>true</interfaceOnly>
+						<java8>true</java8>
+					</configOptions>
+					<inputSpec>${project.basedir}/src/swagger/swagger.yaml</inputSpec>
+				</configuration>
+				<executions>
+
+					<execution>
+						<id>generate-api-classes</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec/>
+							<language/>
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

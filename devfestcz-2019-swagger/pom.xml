@@ -23,11 +23,17 @@
 	</properties>
 
 	<modules>
+		<module>devfestcz-2019-swagger-server-restapi</module>
 		<module>devfestcz-2019-swagger-server</module>
 	</modules>
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>ondra</groupId>
+				<artifactId>devfestcz-2019-swagger-server-restapi</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>io.springfox</groupId>
 				<artifactId>springfox-swagger2</artifactId>
