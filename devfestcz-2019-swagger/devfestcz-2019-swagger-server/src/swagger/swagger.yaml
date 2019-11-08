@@ -1,0 +1,113 @@
+swagger: "2.0"
+info:
+    title: Students
+    description: Example REST API for working with students created for DevFest.cz 2019
+    version: 1.0.0
+
+
+paths:
+    /students:
+        get:
+            summary: Obtains a list of students
+            description: Obtains a list of `Students`. The list is sorted by `lastName`, then by `firstName`, and then by `year`.
+            operationId: getStudents
+            responses:
+                200:
+                    description: Successful response
+                    schema:
+                        type: array
+                        items:
+                            $ref: "#/definitions/Student"
+
+        post:
+            summary: Creates a student
+            description: Creates a `Student`.
+            operationId: postStudent
+            parameters:
+                - $ref: "#/parameters/student"
+            responses:
+                200:
+                    description: Successful response
+                    schema:
+                        type: integer
+                        format: int64
+
+    /students/{studentId}:
+        get:
+            summary: Obtains a student
+            description: Obtains a `Student` by its id.
+            operationId: getStudent
+            parameters:
+                - $ref: "#/parameters/studentId"
+            responses:
+                200:
+                    description: Successful response
+                    schema:
+                        $ref: "#/definitions/Student"
+                404:
+                    description: When the student cannot be found
+
+        put:
+            summary: Saves a student
+            description: Saves a `Student`.
+            operationId: putStudent
+            parameters:
+                - $ref: "#/parameters/studentId"
+                - $ref: "#/parameters/student"
+            responses:
+                204:
+                    description: Successful response
+
+        delete:
+            summary: Deletes a student
+            description: Deletes a `Student`.
+            operationId: deleteStudent
+            parameters:
+                - $ref: "#/parameters/studentId"
+            responses:
+                204:
+                    description: Description
+
+
+parameters:
+    studentId:
+        name: studentId
+        description: Student id
+        in: path
+        required: true
+        type: integer
+        format: int64
+    student:
+        name: student
+        description: Student
+        in: body
+        required: true
+        schema:
+            $ref: "#/definitions/Student"
+
+
+definitions:
+    Student:
+        description: Student
+        type: object
+        properties:
+            id:
+                description: Id
+                type: integer
+                format: int64
+            firstName:
+                description: First name of the student
+                type: string
+            lastName:
+                description: Last name of the student
+                type: string
+            year:
+                description: Year the student currently is in
+                type: integer
+                format: int32
+                minimum: 1
+                maximum: 7
+        required:
+            - firstName
+            - lastName
+            - year
