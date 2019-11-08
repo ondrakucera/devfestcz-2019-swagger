@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useEffect, useState} from 'react';
 import studentsApi from './studentsApi';
 import {Link} from 'react-router-dom';
-import {StudentDto} from './StudentDto';
+import {StudentDto} from './restapi';
 
 const List = () => {
 	const [students, setStudents] = useState([] as StudentDto[]);

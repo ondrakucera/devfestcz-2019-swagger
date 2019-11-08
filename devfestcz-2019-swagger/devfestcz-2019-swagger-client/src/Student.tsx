@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useEffect, useState} from 'react';
 import {useHistory, useParams} from 'react-router-dom';
 import studentsApi from './studentsApi';
-import {StudentDto} from './StudentDto';
+import {StudentDto} from './restapi';
 
 const Student = () => {
 	const {id} = useParams();
